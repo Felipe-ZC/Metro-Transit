@@ -49,6 +49,7 @@ class App extends Component {
       <div className="container App">
           <div className="row">
               <h1 className="App-header">Metro Transit</h1>
+              <hr />
           </div>
           <div className="row">
             <div className="col-xs-12">
