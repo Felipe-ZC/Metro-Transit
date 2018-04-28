@@ -7,7 +7,8 @@ class DirectionsForm extends Component {
   constructor(props) {
    super(props);
    this.state = {
-     directions: []
+     directions: [],
+     directionSelected: ''
    }
    this.handleChange = this.handleChange.bind(this);
  }
@@ -49,33 +50,6 @@ class DirectionsForm extends Component {
     });
   }
 
-  // shouldComponentUpdate(nextProps,nextState){
-  //   if(nextProps.routeID === this.props.routeID && nextState.directions === this.state.directions)
-  //     return false;
-  //   else{
-  //     return true;
-  //     console.log("Should update!")
-  //   }
-  // }
-  //
-  // componentWillUpdate(prevProps, prevState, snapshot){
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://svc.metrotransit.org/NexTrip/Directions/' + this.props.routeID
-  //   })
-  //   .then((response) => {
-  //     console.log("Response")
-  //     console.log(response);
-  //     console.log(response.data);
-  //     this.setState({
-  //       directions: response.data,
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
-
   displayOptions(){
   const directList = this.state.directions.map((directObj) =>
       <option key={directObj.Text} value={directObj.value}>{directObj.Text}</option>
@@ -84,9 +58,9 @@ class DirectionsForm extends Component {
   }
 
   handleChange(e){
-    console.log(e.target.value)
+    console.log(e.target)
     this.setState({
-      routeSelected: e.target.value
+      directionSelected: e.target.value
     });
   }
 
@@ -94,8 +68,8 @@ class DirectionsForm extends Component {
     return (
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Route Direction</ControlLabel>
-            <FormControl onChange={this.handleRouteChange} componentClass="select" placeholder="Select a bus route!">
-              {/* <option value="other">...</option> */}
+            <FormControl onChange={this.handleChange} componentClass="select" placeholder="Select a bus route!">
+              <option value="other">...</option>
               {this.displayOptions()}
             </FormControl>
           </FormGroup>
