@@ -37,14 +37,14 @@ class BusStopForm extends Component {
     console.log("Next route: " + nextProps.routeID + "\nNext direction: " + nextProps.directionID);
     axios({
       method: 'get',
-      url: 'http://svc.metrotransit.org/NexTrip/Stop/' + this.props.routeID + '/' + this.props.directionID
+      url: 'http://svc.metrotransit.org/NexTrip/Stops/' + this.props.routeID + '/' + this.props.directionID
     })
     .then((response) => {
       console.log("Response")
       console.log(response);
       console.log(response.data);
       this.setState({
-        directions: response.data,
+        stops: response.data,
       });
     })
     .catch((error) => {
