@@ -52,7 +52,7 @@ class App extends Component {
               <hr />
           </div>
           <div className="row">
-            <div className="col-xs-12">
+            <div className="col-md-12">
               <InputForm routeList={this.state.routes} />
             </div>
           </div>

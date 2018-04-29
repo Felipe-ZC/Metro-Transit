@@ -36,7 +36,7 @@ class DirectionsForm extends Component {
     console.log("Next prop: " + nextProps.routeID);
     axios({
       method: 'get',
-      url: 'http://svc.metrotransit.org/NexTrip/Directions/' + this.props.routeID
+      url: 'http://svc.metrotransit.org/NexTrip/Directions/' + nextProps.routeID
     })
     .then((response) => {
       console.log("Response")
