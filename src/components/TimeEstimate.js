@@ -9,7 +9,6 @@ class TimeEstimate extends Component {
    super(props);
    this.state = {
      departureTime: {},
-     currentTime: {}
    }
  }
 
@@ -23,10 +22,9 @@ class TimeEstimate extends Component {
       console.log("Response")
       console.log(response);
       console.log(response.data);
-      console.log("Current CDT: " + moment().tz("America/Chicago").format("HH:mm"))
+      // console.log("Current CDT: " + moment().tz("America/Chicago").format("HH:mm"))
       this.setState({
         departureTime: response.data,
-        currentTime: moment().tz("America/Chicago").format("HH:mm")
       });
     })
     .catch((error) => {
@@ -49,7 +47,6 @@ class TimeEstimate extends Component {
       // Get next departure
       this.setState({
         departureTime: response.data,
-        currentTime: moment().tz("America/Chicago").format("HH:mm")
       });
     })
     .catch((error) => {
@@ -60,35 +57,38 @@ class TimeEstimate extends Component {
   // Takes in the next depature time as a string and calculates the time in minutes
   // until the next bus/train arrives
   calculateTime(deptTime){
+    // var nTime = Date.now();
+    // var timeDiff = parseInt(dTime[0]) - nTime;
+    // console.log(timeDiff)
     // Separate time at the white space char
-    var tempTime = deptTime.split(" ")
+    var tempTime = deptTime.DepartureText.split(" ")
     // The time is in minutes! No need to calculate time difference
     if(tempTime.length > 1){
-      return deptTime;
+      return tempTime[0] + " minutes";
     }
     // The time is not in minutes! Calculate time difference
     else{
-      if(this.state.currentTime){
-        var currTime = this.state.currentTime.split(":")
-        var dTime = deptTime.split(":")
-        var hoursDiff =  parseInt(dTime[0]) - parseInt(currTime[0])
-        var minDiff = parseInt(dTime[1]) - parseInt(currTime[1])
-        // Convert hours to minutes and add/subtract difference in minutes
-        var timeDiff = (hoursDiff * 60) + minDiff;
-        return timeDiff + " minutes"
-      }
-    }
+      var currTime = moment.tz("America/Chicago").utc().format("hh:mm:a")
+      var dTime = moment.tz(deptTime.DepartureText,"hh:mm","America/Chicago").utc().format("hh:mm")
+      console.log(currTime.split(":"))
+      console.log(dTime.split(":"))
+      // This is wrong!!! Needs to account for AM/PM!!!!!
+        var hourDiff = (parseInt(dTime.split(":")[0])) - parseInt(currTime.split(":")[0])
+        var minuteDiff = parseInt(dTime.split(":")[1]) - parseInt(currTime.split(":")[1])
+        console.log("Hour diff: " + hourDiff + "\nMinute diff: " + minuteDiff)
+        return ((hourDiff * 60) + minuteDiff) + " minutes"
   }
+}
 
   //
   displayDepartureTime(){
-    if(this.state.departureTime){
+    if(this.state.departureTime.length > 0){
       for(var i = 0; i < this.state.departureTime.length;++i){
         // Only look for depature times that have not left yet!
         if(!(this.state.departureTime[i].DepartureText === "Due")){
           console.log("Not due")
           return (<Panel>
-            <Panel.Body> The next route leaves in {this.calculateTime(this.state.departureTime[i].DepartureText)}. </Panel.Body>
+            <Panel.Body> The next route leaves in {this.calculateTime(this.state.departureTime[i])}. </Panel.Body>
           </Panel>)
         }
         else{
@@ -106,7 +106,7 @@ class TimeEstimate extends Component {
   render() {
     return (
         <div>
-          {this.displayDepartureTime()}
+          {this.state.departureTime && this.displayDepartureTime()}
         </div>
     );
   }

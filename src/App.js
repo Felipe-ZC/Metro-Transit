@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import {Panel} from 'react-bootstrap';
 import InputForm from './components/InputForm'
+import moment from 'moment'
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ class App extends Component {
       console.log("Response")
       console.log(response);
       console.log(response.data);
+      console.log(moment.utc().format())
+      console.log(Date.now())
       this.setState({
         routes: response.data
       });
