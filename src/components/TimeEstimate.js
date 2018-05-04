@@ -57,9 +57,6 @@ class TimeEstimate extends Component {
   // Takes in the next depature time as a string and calculates the time in minutes
   // until the next bus/train arrives
   calculateTime(deptTime){
-    // var nTime = Date.now();
-    // var timeDiff = parseInt(dTime[0]) - nTime;
-    // console.log(timeDiff)
     // Separate time at the white space char
     var tempTime = deptTime.DepartureText.split(" ")
     // The time is in minutes! No need to calculate time difference
@@ -68,15 +65,13 @@ class TimeEstimate extends Component {
     }
     // The time is not in minutes! Calculate time difference
     else{
-      var currTime = moment.tz("America/Chicago").utc().format("hh:mm:a")
-      var dTime = moment.tz(deptTime.DepartureText,"hh:mm","America/Chicago").utc().format("hh:mm")
-      console.log(currTime.split(":"))
-      console.log(dTime.split(":"))
-      // This is wrong!!! Needs to account for AM/PM!!!!!
-        var hourDiff = (parseInt(dTime.split(":")[0])) - parseInt(currTime.split(":")[0])
-        var minuteDiff = parseInt(dTime.split(":")[1]) - parseInt(currTime.split(":")[1])
-        console.log("Hour diff: " + hourDiff + "\nMinute diff: " + minuteDiff)
-        return ((hourDiff * 60) + minuteDiff) + " minutes"
+      var d = new Date()
+      var currTime = Date.now()
+      var eTime = deptTime.DepartureTime.split("/Date(")[1].split("-");
+      console.log(currTime)
+      console.log(eTime[0]);
+      var difference = ((eTime[0] - currTime)/60)/1000;
+      return Math.floor(difference) + " minutes"
   }
 }
 
