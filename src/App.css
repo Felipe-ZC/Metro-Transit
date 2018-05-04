@@ -5,4 +5,12 @@
 .App-header {
   height: 1%;
   padding: 1%;
+  font-family: 'Titan One', cursive;
+  font-size: 500%;
+  text-shadow: 2px 2px #ff0000;
+}
+
+.Main-Panel{
+  padding: 2%;
+  background-image: url("./images/subway-lines.png");
 }

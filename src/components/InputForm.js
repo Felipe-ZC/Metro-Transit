@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
+import {FormControl, FormGroup, ControlLabel, Panel} from 'react-bootstrap'
 import DirectionsForm from './DirectionsForm'
 import '../App.css';
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import {Panel} from 'react-bootstrap';
 import InputForm from './components/InputForm'
 
 class App extends Component {
@@ -13,11 +14,7 @@ class App extends Component {
      * providerID and the route number.
      */
      routes : [],
-     value: '',
-     routeSelected: false
    }
-  //  this.handleChange = this.handleChange.bind(this);
-  //  this.handleUserInput = this.handleUserInput.bind(this);
  }
 
  /*
@@ -35,8 +32,7 @@ class App extends Component {
       console.log(response);
       console.log(response.data);
       this.setState({
-        routes: response.data,
-        route: response.data[0].Route,
+        routes: response.data
       });
     })
     .catch((error) => {
@@ -49,11 +45,12 @@ class App extends Component {
       <div className="container App">
           <div className="row">
               <h1 className="App-header">Metro Transit</h1>
-              <hr />
           </div>
           <div className="row">
             <div className="col-md-12">
+              <Panel className="Main-Panel">
               <InputForm routeList={this.state.routes} />
+            </Panel>
             </div>
           </div>
       </div>
