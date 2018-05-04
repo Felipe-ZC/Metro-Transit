@@ -13,6 +13,7 @@ class TimeEstimate extends Component {
    }
  }
 
+ // Load time departure objects when component has been mounted
   componentDidMount(){
     axios({
       method: 'get',
@@ -33,6 +34,7 @@ class TimeEstimate extends Component {
     });
   }
 
+  // Update component state with new props!
   componentWillReceiveProps(nextProps){
     console.log("Next Route: " + nextProps.routeID + "\nNext Direction: " + nextProps.directionID + "\nNext Stop: " + nextProps.stopID);
     axios({
@@ -94,6 +96,7 @@ class TimeEstimate extends Component {
         }
       }
     }
+    // No departures at this time
     else{
       return (<Panel>
         <Panel.Body> No current departures at this time.</Panel.Body>

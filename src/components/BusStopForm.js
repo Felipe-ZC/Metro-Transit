@@ -14,6 +14,7 @@ class BusStopForm extends Component {
    this.handleChange = this.handleChange.bind(this);
  }
 
+ // Load all bus stops once component has been mounted
   componentDidMount(){
     console.log("Route ID: " + this.props.routeID + "\nDirection: " + this.props.directionID)
     axios({
@@ -33,6 +34,7 @@ class BusStopForm extends Component {
     });
   }
 
+  // Load new bust stops once user has selected another direction
   componentWillReceiveProps(nextProps){
     console.log("Next route: " + nextProps.routeID + "\nNext direction: " + nextProps.directionID);
     axios({
@@ -52,6 +54,7 @@ class BusStopForm extends Component {
     });
   }
 
+  // Parse directions into a list of options for user to choose
   displayOptions(){
   const stopsList = this.state.stops.map((stopObj) =>
       <option key={stopObj.Text} value={stopObj.Value}>{stopObj.Text}</option>
@@ -59,6 +62,7 @@ class BusStopForm extends Component {
   return stopsList;
   }
 
+  // Update component state whenever the user selects a new stop
   handleChange(e){
     console.log("Stop selected: " + e.target.value)
     this.setState({

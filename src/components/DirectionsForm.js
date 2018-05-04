@@ -14,6 +14,7 @@ class DirectionsForm extends Component {
    this.handleChange = this.handleChange.bind(this);
  }
 
+  // Load directions once user has selected a route
   componentDidMount(){
     axios({
       method: 'get',
@@ -32,6 +33,7 @@ class DirectionsForm extends Component {
     });
   }
 
+  // Load new directions once user has selected a new route
   componentWillReceiveProps(nextProps){
     console.log("Next prop: " + nextProps.routeID);
     axios({
@@ -51,6 +53,7 @@ class DirectionsForm extends Component {
     });
   }
 
+  // Parse directions into a list of options
   displayOptions(){
   const directList = this.state.directions.map((directObj) =>
       <option key={directObj.Text} value={directObj.Value}>{directObj.Text}</option>
@@ -58,6 +61,7 @@ class DirectionsForm extends Component {
   return directList;
   }
 
+  // Change component state once user has choosen a new direction
   handleChange(e){
     console.log("Direction selected: " + e.target.value)
     this.setState({

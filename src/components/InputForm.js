@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormControl, FormGroup, ControlLabel, Panel} from 'react-bootstrap'
+import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 import DirectionsForm from './DirectionsForm'
 import '../App.css';
 
@@ -12,6 +12,7 @@ class InputForm extends Component {
    this.handleRouteChange = this.handleRouteChange.bind(this);
  }
 
+  // Parse routes into a list of options
   displayOptions(){
   const routesList = this.props.routeList.map((routeObj) =>
       <option key={routeObj.Route} value={routeObj.Route}>{routeObj.Description}</option>
@@ -19,6 +20,7 @@ class InputForm extends Component {
   return routesList;
   }
 
+  // Chnage component state whenever the user enters a new route
   handleRouteChange(e){
     console.log("Route ID: " + e.target.value)
     this.setState({
@@ -26,6 +28,7 @@ class InputForm extends Component {
     });
   }
 
+  // Display only directions when the user has specified a new route!
   render() {
     return (
         <form>
