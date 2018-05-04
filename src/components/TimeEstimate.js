@@ -71,7 +71,7 @@ class TimeEstimate extends Component {
       console.log(currTime)
       console.log(eTime[0]);
       var difference = ((eTime[0] - currTime)/60)/1000;
-      return Math.floor(difference) + " minutes"
+      return Math.ceil(difference) + " minutes"
   }
 }
 
