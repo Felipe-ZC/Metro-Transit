@@ -18,7 +18,7 @@ class App extends Component {
  }
 
  /*
-  * Get all routes that are inservice
+  * Get all routes that are in service
   * on the current day once this component
   * has been mounted.
   */
@@ -46,7 +46,7 @@ class App extends Component {
           <div className="row">
               <h1 className="App-header">Metro Transit</h1>
           </div>
-          <div className="row">
+          <div className="row Input-Form">
             <div className="col-md-12">
               <Panel className="Main-Panel">
               <InputForm routeList={this.state.routes} />

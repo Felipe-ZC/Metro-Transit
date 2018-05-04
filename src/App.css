@@ -3,14 +3,18 @@
 }
 
 .App-header {
-  height: 1%;
-  padding: 1%;
-  font-family: 'Titan One', cursive;
+  /*height: 1%;*/
+  padding: 2%;
+  font-family: 'Shrikhand', cursive;
   font-size: 500%;
-  text-shadow: 2px 2px #ff0000;
+  color: #e6e6e6;
+}
+
+.Input-Form{
+  padding: 1%;
 }
 
 .Main-Panel{
   padding: 2%;
-  background-image: url("./images/subway-lines.png");
+  background-image: url("./images/hypnotize.png");
 }
