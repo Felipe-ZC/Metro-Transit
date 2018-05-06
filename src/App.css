@@ -3,8 +3,7 @@
 }
 
 .App-header {
-  /*height: 1%;*/
-  padding: 2%;
+  padding: 3%;
   font-family: 'Shrikhand', cursive;
   font-size: 500%;
   color: #e6e6e6;
@@ -12,9 +11,10 @@
 
 .Input-Form{
   padding: 1%;
+  padding-top: 3%;
 }
 
 .Main-Panel{
-  padding: 2%;
+  padding: 3%;
   background-image: url("./images/hypnotize.png");
 }

@@ -32,8 +32,6 @@ class App extends Component {
       console.log("Response")
       console.log(response);
       console.log(response.data);
-      console.log(moment.utc().format())
-      console.log(Date.now())
       this.setState({
         routes: response.data
       });
